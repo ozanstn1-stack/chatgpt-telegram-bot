@@ -1,0 +1,8 @@
+services:
+  - type: worker
+    name: chatgpt-telegram-bot
+    env: docker
+    plan: free
+    region: frankfurt
+    dockerfilePath: ./Dockerfile
+    autoDeploy: true
