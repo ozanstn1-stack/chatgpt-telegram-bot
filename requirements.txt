@@ -28,3 +28,4 @@ wolframalpha
 deepl
 pyppeteer
 geoip2
+tiktoken
