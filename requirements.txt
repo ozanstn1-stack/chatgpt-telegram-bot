@@ -24,3 +24,7 @@ aria2p
 langdetect
 emoji
 tenacity
+wolframalpha
+deepl
+pyppeteer
+geoip2
