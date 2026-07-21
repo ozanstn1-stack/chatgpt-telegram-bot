@@ -1,14 +1,16 @@
-FROM python:3.9-alpine
+FROM python:3.10-slim
 
-ENV PYTHONFAULTHANDLER=1 \
-     PYTHONUNBUFFERED=1 \
-     PYTHONDONTWRITEBYTECODE=1 \
-     PIP_DISABLE_PIP_VERSION_CHECK=on
-
-RUN apk --no-cache add ffmpeg
+# ffmpeg ve gerekli sistem araçlarını kur
+RUN apt-get update && apt-get install -y ffmpeg && rm -rf /var/lib/apt/lists/*
 
 WORKDIR /app
-COPY . .
-RUN pip install -r requirements.txt --no-cache-dir
 
+# Önce requirements.txt'i kopyala ve bağımlılıkları yükle
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Projenin geri kalanını kopyala
+COPY . .
+
+# Botu başlat
 CMD ["python", "bot/main.py"]
